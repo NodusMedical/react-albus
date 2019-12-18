@@ -12,15 +12,18 @@
  * the License.
  */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Steps extends Component {
   componentWillMount() {
-    const steps = React.Children.map(
-      this.props.children,
-      ({ props: { children, render, ...config } }) => config
-    );
+    const steps = React.Children.map(this.props.children, child => {
+      if (!child) return null;
+      const {
+        props: { children, render, ...config },
+      } = child;
+      return config;
+    });
     this.context.wizard.init(steps);
   }
 

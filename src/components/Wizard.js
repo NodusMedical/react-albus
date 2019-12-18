@@ -12,10 +12,10 @@
  * the License.
  */
 
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import { createMemoryHistory } from 'history';
-import renderCallback from '../utils/renderCallback';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import { createMemoryHistory } from "history";
+import renderCallback from "../utils/renderCallback";
 
 class Wizard extends Component {
   state = {
@@ -71,9 +71,9 @@ class Wizard extends Component {
   steps = [];
 
   pathToStep = pathname => {
-    const id = pathname.replace(this.basename, '');
-    const [step] = this.state.steps.filter(
-      s => (this.props.exactMatch ? s.id === id : id.startsWith(s.id))
+    const id = pathname.replace(this.basename, "");
+    const [step] = this.state.steps.filter(s =>
+      this.props.exactMatch ? s.id === id : id.startsWith(s.id)
     );
 
     return step || this.state.step;
@@ -91,7 +91,8 @@ class Wizard extends Component {
   };
 
   push = (step = this.nextStep) => this.history.push(`${this.basename}${step}`);
-  replace = (step = this.nextStep) => this.history.replace(`${this.basename}${step}`);
+  replace = (step = this.nextStep) =>
+    this.history.replace(`${this.basename}${step}`);
 
   next = () => {
     if (this.props.onNext) {
@@ -123,7 +124,7 @@ Wizard.propTypes = {
 };
 
 Wizard.defaultProps = {
-  basename: '',
+  basename: "",
   history: null,
   onNext: null,
   render: null,
